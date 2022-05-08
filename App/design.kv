@@ -1,0 +1,64 @@
+WindowManager:
+    SearchWindow:
+    SecondWindow:
+
+
+<SearchWindow>:
+    name: "SearchWindow"
+    item: item
+    GridLayout:
+        cols:1
+        spacing: 30
+        GridLayout:
+            cols:2
+
+            Label:
+                text: "Item Name "
+
+            TextInput:
+                id: item
+                multiline: False
+
+        Button:
+            text: "Add Item"
+            font_size: 32
+            on_press: root.addItem()
+
+        Button:
+            text: "Search"
+            font_size: 32
+            on_press: root.submit()
+            on_release: app.root.current = "second"
+
+<SecondWindow>:
+    name: "second"
+    results: results
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+        ScrollView:
+            size: self.size
+
+            Label:
+                id:results
+                text: "Second Screen"
+                font_size: 20
+
+
+        GridLayout:
+            cols:1
+            spacing: 30
+            Button:
+                text:"Show results"
+                font_size: 32
+                on_press: root.update()
+
+
+
+            Button:
+                text:"Previous Screen"
+                font_size: 32
+                on_release: app.root.current = "SearchWindow"
+
+
